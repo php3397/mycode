@@ -1,0 +1,23 @@
+
+
+def bin_search(alist,search_digit)
+	i=0
+	first=0
+	last=len(alist)-1
+	middle=first+last//2
+	found=FALSE
+	while ( first<=last and not found):
+		if (alist[i) == search_digit):
+			print ("Found the number at i"+i)
+			found = TRUE
+		else
+			i +=1;
+			if alist[i] < search_digit:
+				first = alist[i]
+			else
+				last = alist[i]
+
+
+
+alist=['0','3','4','10','22','45']
+bin_search(alist,3)

@@ -1,0 +1,78 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""
+find large (1 gb) files in given directory [C:\Projects] (root) 
+(including one level under root dir) 
+"""
+
+import os
+
+
+def get_file_paths(directory):
+  """
+  This function will generate the file names in a directory
+  tree by walking the tree either top-down or bottom-up. For each
+  directory in the tree rooted at directory top (including top itself),
+  it yields a 3-tuple (dir-path, dir-names, file-names)
+  """
+
+  file_paths = [] # list to store all of the full file-paths
+
+  # walk the tree
+  for root, directories, files in os.walk(directory):
+   for filename in files:
+    # join the two strings in order to form the full file_path
+    file_path = os.path.join(root, filename)
+    file_paths.append(file_path) # add it to the list
+
+  return file_paths
+
+
+def dir_find_large_size(directory, max_size):
+  """
+  This function looks for files with size bigger than max_size
+  (in mega bites) and prints file path if such file is found
+  """
+ 	# exec get_file_paths() function and store its results in a variable
+ 	full_file_paths = get_file_paths(directory)
+ 	size_mb = 0
+
+ 	for file_path in full_file_paths:
+
+  	# test file_path
+  	if os.path.isfile(file_path):
+   	size_mb = ((os.path.getsize(file_path)) / 1024) / 1024
+   	if size_mb > max_size:
+    	print (file_path)
+    	print ('size: {0} mb'.format(size_mb))
+  	else:
+   	print ('Can not read file:')
+   	print (file_path)
+
+ 	return size_mb
+
+
+def main():
+
+ 	# main begin
+
+ 	root_dir = 'C:\Projects'
+ 	result_size = 0
+ 	# get list of sub-directories one level under root_dir
+ 	dir_list = os.walk(os.path.join(root_dir, '.')).next()[1]
+
+ 	print (root_dir)
+ 	print ('-------------------------------')
+ 	for cur_dir in dir_list:
+  	# print directory name
+  	print ('processing: {0} | ...'.format(cur_dir))
+  	# find files bigger than 1000 mb
+  	result_size = dir_find_large_size(root_dir + '\\' + cur_dir, 1000)
+ 	print ('-------------------------------')
+
+ 	print (result_size)
+
+  # main end
+
+if __name__ == "__main__": main()

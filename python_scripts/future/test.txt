@@ -1,0 +1,6 @@
+total 8
+-rw-r--r--  1 aarna  staff  60 Jan 21 17:38 read_first10lines.py
+-rw-r--r--  1 aarna  staff   0 Jan 21 19:18 test.txt
+total 16
+-rw-r--r--  1 aarna  staff   60 Jan 21 17:38 read_first10lines.py
+-rw-r--r--  1 aarna  staff  126 Jan 21 19:18 test.txt

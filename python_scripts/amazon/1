@@ -1,0 +1,10 @@
+str="adgba"
+
+for i in str:
+	stringtocompare=i
+	count=1
+	for j in range(count,len(str)):
+		print("comapring",stringtocompare,j)
+		if stringtocompare == str[j]:
+			print("found at",j)
+  
